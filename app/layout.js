@@ -12,14 +12,3 @@ export default function RootLayout({ children }) {
     </html>
   )
 }
-```
-
----
-
-## **After Creating These Files:**
-
-1. **Commit all changes:**
-```
-   git add .
-   git commit -m "Add Tailwind CSS configuration"
-   git push
