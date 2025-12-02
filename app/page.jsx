@@ -66,7 +66,7 @@ export default function Home() {
             <div className="relative h-96 md:h-full">
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-2xl border border-cyan-500/30 backdrop-blur-sm flex items-center justify-center overflow-hidden">
                 <img 
-                  src="YOUR_LOGO_URL_HERE" 
+                  src="tech_logo.png" 
                   alt="TechWorm Logo" 
                   className="max-w-full max-h-full object-contain p-8"
                   onError={(e) => {
