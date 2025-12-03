@@ -34,9 +34,9 @@ export default function Home() {
             <a href="#efficiency" className="text-slate-300 hover:text-cyan-400 transition">Efficiency</a>
             <a href="#capacity" className="text-slate-300 hover:text-cyan-400 transition">Capacity</a>
             <a href="#bloom" className="text-slate-300 hover:text-cyan-400 transition">Bloom Fresh</a>
-            <button className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg font-bold hover:shadow-lg hover:shadow-cyan-500/50 transition-all hover:scale-105">
-              Contact Us
-            </button>
+              <a href="mailto:sales@techwormvending.com" className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg font-bold hover:shadow-lg hover:shadow-cyan-500/50 transition-all hover:scale-105 inline-block">
+          Contact Us
+        </a>
           </nav>
         </div>
       </header>
@@ -343,9 +343,9 @@ export default function Home() {
               Efficiency. Capacity. Variety. Fresh food. Real customer service. This isn't the future of vending—it's the present. And it's here now.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105">
-                Schedule a Consultation
-              </button>
+            <a href="mailto:sales@techwormvending.com?subject=Schedule%20a%20Consultation" className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105 inline-block text-center">
+        Schedule a Consultation
+      </a>
               <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" className="px-8 py-4 bg-slate-800 border-2 border-emerald-500/40 text-emerald-400 rounded-lg font-bold text-lg hover:border-emerald-500 hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp Us
