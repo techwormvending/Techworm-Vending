@@ -202,10 +202,10 @@ export default function MachinesPage() {
                   </div>
 
                   {/* CTA Button */}
-                  <button className={`w-full py-3 px-4 bg-gradient-to-r ${machine.color} text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300 group-hover:shadow-cyan-500/30 flex items-center justify-center gap-2`}>
-                    <MessageCircle className="w-4 h-4" />
-                    Request Demo
-                  </button>
+                  <a href="mailto:sales@techwormvending.com?subject=Request%20Demo%20-%20${machine.name}" className={`w-full py-3 px-4 bg-gradient-to-r ${machine.color} text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300 group-hover:shadow-cyan-500/30 flex items-center justify-center gap-2`}>
+                  <MessageCircle className="w-4 h-4" />
+                  Request Demo
+                </a>
                 </div>
               </div>
             </div>
