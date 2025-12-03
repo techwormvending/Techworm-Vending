@@ -61,41 +61,7 @@ export default function Home() {
                 <a href="/machines" className="px-8 py-4 bg-slate-900 border-2 border-cyan-500/40 rounded-lg font-bold text-lg hover:border-cyan-500 hover:bg-slate-800 transition-all inline-block">
   See Machines
 </a>
-```
 
----
-
-## **What The Page Includes:**
-
-✅ **All 3 Machines Displayed:**
-- US 360CT Mini
-- DC-550D Hybrid  
-- US1200CT Supermarket
-
-✅ **Each Machine Card Shows:**
-- Icon
-- Name & tagline
-- Description
-- Detailed specs
-- Key features
-- Call-to-action button
-
-✅ **Comparison Table:**
-- Side-by-side specs of all three
-
-✅ **Beautiful Design:**
-- Same dark theme with gradients
-- Hover effects
-- Animations
-- Responsive layout
-
----
-
-## **Step 3: Commit & Push**
-```
-git add .
-git commit -m "Add machines page"
-git push
               </div>
             </div>
             <div className="relative h-96 md:h-full">
