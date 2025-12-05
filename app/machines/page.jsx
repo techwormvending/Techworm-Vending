@@ -15,6 +15,7 @@ export default function MachinesPage() {
       id: 1,
       name: 'US 360CT Mini',
       tagline: 'Compact Convenience',
+      image: '/machines/us360ct-mini.jpg',
       description: 'The perfect fit for any space. Powerful AI in a slim profile. Fits anywhere, performs everywhere.',
       icon: '⚡',
       color: 'from-cyan-500 to-blue-600',
@@ -41,6 +42,7 @@ export default function MachinesPage() {
       id: 2,
       name: 'DC-550D Hybrid',
       tagline: 'Dual Temperature Control',
+      image: '/machines/dc550d-hybrid.jpg',
       description: 'Refrigerated AND frozen in one intelligent machine. Your customers choose. Your revenue grows.',
       icon: '❄️',
       color: 'from-purple-500 to-pink-600',
@@ -68,6 +70,7 @@ export default function MachinesPage() {
       id: 3,
       name: 'US1200CT Supermarket',
       tagline: 'Double Door Powerhouse',
+      image: '/machines/us1200ct-supermarket.jpg',
       description: 'A convenience store in a machine. Over 1200 items. Double doors. Unlimited possibilities.',
       icon: '🏪',
       color: 'from-emerald-500 to-teal-600',
@@ -154,58 +157,74 @@ export default function MachinesPage() {
                 {/* Top glow accent */}
                 <div className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${machine.color} rounded-full filter blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-300`}></div>
 
-                <div className="relative p-8 h-full flex flex-col">
-                  {/* Icon */}
-                  <div className="text-6xl mb-6">{machine.icon}</div>
+                <div className="relative flex flex-col h-full">
+                  {/* Machine Image */}
+                  <div className="h-64 bg-gradient-to-br from-slate-800 to-slate-900 overflow-hidden border-b border-cyan-500/10 flex items-center justify-center flex-shrink-0">
+                    <img 
+                      src={machine.image} 
+                      alt={machine.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.parentElement.innerHTML = '<div style="text-align: center; color: rgba(203, 213, 225, 0.4); font-size: 13px; padding: 20px;"><p style="margin-bottom: 8px;">Machine Image Here</p><p style="font-size: 12px;">Upload to /public/machines/</p></div>';
+                      }}
+                    />
+                  </div>
 
-                  {/* Title */}
-                  <h3 className="text-3xl font-black text-white mb-2">{machine.name}</h3>
-                  <p className={`text-sm font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r ${machine.color}`}>
-                    {machine.tagline}
-                  </p>
+                  {/* Content */}
+                  <div className="p-8 flex-grow flex flex-col">
+                    {/* Icon */}
+                    <div className="text-6xl mb-6">{machine.icon}</div>
 
-                  {/* Description */}
-                  <p className="text-slate-300 text-sm mb-8 leading-relaxed">
-                    {machine.description}
-                  </p>
+                    {/* Title */}
+                    <h3 className="text-3xl font-black text-white mb-2">{machine.name}</h3>
+                    <p className={`text-sm font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r ${machine.color}`}>
+                      {machine.tagline}
+                    </p>
 
-                  {/* Specs */}
-                  <div className="mb-8 flex-grow">
-                    <h4 className="font-bold text-white mb-4 text-sm">SPECIFICATIONS</h4>
-                    <div className="space-y-3">
-                      {Object.entries(machine.specs).map(([label, value], i) => (
-                        <div key={i} className="text-sm">
-                          <p className="text-slate-500 text-xs uppercase tracking-wide mb-1">{label}</p>
-                          <p className="text-slate-200 font-semibold">{value}</p>
-                        </div>
-                      ))}
+                    {/* Description */}
+                    <p className="text-slate-300 text-sm mb-8 leading-relaxed">
+                      {machine.description}
+                    </p>
+
+                    {/* Specs */}
+                    <div className="mb-8 flex-grow">
+                      <h4 className="font-bold text-white mb-4 text-sm">SPECIFICATIONS</h4>
+                      <div className="space-y-3">
+                        {Object.entries(machine.specs).map(([label, value], i) => (
+                          <div key={i} className="text-sm">
+                            <p className="text-slate-500 text-xs uppercase tracking-wide mb-1">{label}</p>
+                            <p className="text-slate-200 font-semibold">{value}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Features */}
-                  <div className="mb-8 border-t border-cyan-500/10 pt-6">
-                    <h4 className="font-bold text-white mb-4 text-sm">FEATURES</h4>
-                    <ul className="space-y-2">
-                      {machine.features.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                          <Zap className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    {/* Features */}
+                    <div className="mb-8 border-t border-cyan-500/10 pt-6">
+                      <h4 className="font-bold text-white mb-4 text-sm">FEATURES</h4>
+                      <ul className="space-y-2">
+                        {machine.features.map((feature, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                            <Zap className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                  {/* Highlight badge */}
-                  <div className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${machine.color} bg-opacity-10 border border-cyan-500/30 rounded-lg text-cyan-300 text-xs font-semibold mb-6 w-full justify-center`}>
-                    <TrendingUp className="w-4 h-4" />
-                    {machine.highlight}
-                  </div>
+                    {/* Highlight badge */}
+                    <div className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${machine.color} bg-opacity-10 border border-cyan-500/30 rounded-lg text-cyan-300 text-xs font-semibold mb-6 w-full justify-center`}>
+                      <TrendingUp className="w-4 h-4" />
+                      {machine.highlight}
+                    </div>
 
-                  {/* CTA Button */}
-                  <a href="mailto:sales@techwormvending.com?subject=Request%20Demo%20-%20${machine.name}" className={`w-full py-3 px-4 bg-gradient-to-r ${machine.color} text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300 group-hover:shadow-cyan-500/30 flex items-center justify-center gap-2`}>
-                  <MessageCircle className="w-4 h-4" />
-                  Request Demo
-                </a>
+                    {/* CTA Button */}
+                    <a href="mailto:sales@techwormvending.com?subject=Request%20Demo%20-%20${machine.name}" className={`w-full py-3 px-4 bg-gradient-to-r ${machine.color} text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300 group-hover:shadow-cyan-500/30 flex items-center justify-center gap-2`}>
+                      <MessageCircle className="w-4 h-4" />
+                      Request Demo
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -266,10 +285,10 @@ export default function MachinesPage() {
               Every machine comes with AI technology, Bloom Fresh integration, real-time tracking, and WhatsApp customer service.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="mailto:sales@techwormvending.com?subject=Schedule%20a%20Consultation" className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105 inline-block text-center">
+              <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105">
                 Schedule a Consultation
-              </a>
-              <a href="https://wa.me/14127799809" className="px-8 py-4 bg-slate-800 border-2 border-emerald-500/40 text-emerald-400 rounded-lg font-bold text-lg hover:border-emerald-500 hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
+              </button>
+              <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" className="px-8 py-4 bg-slate-800 border-2 border-emerald-500/40 text-emerald-400 rounded-lg font-bold text-lg hover:border-emerald-500 hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp Us
               </a>
