@@ -382,7 +382,7 @@ export default function Home() {
               <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105">
                 Schedule a Consultation
               </button>
-              <a href="https://wa.me/4127799809" className="px-8 py-4 bg-slate-800 border-2 border-emerald-500/40 text-emerald-400 rounded-lg font-bold text-lg hover:border-emerald-500 hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
+              <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" className="px-8 py-4 bg-slate-800 border-2 border-emerald-500/40 text-emerald-400 rounded-lg font-bold text-lg hover:border-emerald-500 hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp Us
               </a>
@@ -407,7 +407,7 @@ export default function Home() {
             <div>
               <h4 className="font-bold text-white mb-4">Contact</h4>
               <p className="text-slate-400 text-sm">Pittsburgh, PA</p>
-              <p className="text-cyan-400 font-semibold text-sm cursor-pointer hover:text-cyan-300">Connect on WhatsApp</p>
+              <a href="https://wa.me/14127799809" className="text-cyan-400 font-semibold text-sm cursor-pointer hover:text-cyan-300">WhatsApp: (412) 779-9809</a>
             </div>
             <div>
               <h4 className="font-bold text-white mb-4">Partners</h4>
