@@ -58,18 +58,18 @@ export default function Home() {
                 Vending machines aren't just dispensers anymore. They're intelligent retail partners that understand demand, maximize space, and deliver unparalleled customer experience.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="group px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                <a href="/journey" className="group px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105 flex items-center justify-center gap-2 inline-block">
                   Start Your Journey <ChevronRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                </button>
-                <button className="px-8 py-4 bg-slate-900 border-2 border-cyan-500/40 rounded-lg font-bold text-lg hover:border-cyan-500 hover:bg-slate-800 transition-all">
+                </a>
+                <a href="/machines" className="px-8 py-4 bg-slate-900 border-2 border-cyan-500/40 rounded-lg font-bold text-lg hover:border-cyan-500 hover:bg-slate-800 transition-all inline-block text-center">
                   See Machines
-                </button>
+                </a>
               </div>
             </div>
             <div className="relative h-96 md:h-full">
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-2xl border border-cyan-500/30 backdrop-blur-sm flex items-center justify-center overflow-hidden">
                 <img 
-                  src="tech_logo.jpg" 
+                  src="YOUR_LOGO_URL_HERE" 
                   alt="TechWorm Logo" 
                   className="max-w-full max-h-full object-contain p-8"
                   onError={(e) => {
