@@ -104,7 +104,7 @@ export default function Home() {
           
           {/* Video Info */}
           <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 p-8 border-t border-cyan-500/20">
-            <h3 className="text-3xl font-black text-white mb-3">How TechWorm Works</h3>
+            <h3 className="text-3xl font-black text-white mb-3">How TechWorm Vending Works</h3>
             <p className="text-slate-300 text-lg">
               Experience the future of vending. AI-powered recognition, instant checkout, unlimited variety.
             </p>
