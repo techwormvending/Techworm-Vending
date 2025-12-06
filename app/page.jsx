@@ -12,11 +12,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
+      {/* Animated gradient background */}
       <div className="fixed inset-0 opacity-30 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl opacity-20"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl opacity-20"></div>
       </div>
 
+      {/* Header */}
       <header className={`relative z-10 border-b border-cyan-500/20 backdrop-blur-sm py-6 transition-all duration-1000 ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
       }`}>
@@ -34,13 +36,14 @@ export default function Home() {
             <a href="#efficiency" className="text-slate-300 hover:text-cyan-400 transition">Efficiency</a>
             <a href="#capacity" className="text-slate-300 hover:text-cyan-400 transition">Capacity</a>
             <a href="#bloom" className="text-slate-300 hover:text-cyan-400 transition">Bloom Fresh</a>
-              <a href="mailto:sales@techwormvending.com" className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg font-bold hover:shadow-lg hover:shadow-cyan-500/50 transition-all hover:scale-105 inline-block">
-          Contact Us
-        </a>
+            <button className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg font-bold hover:shadow-lg hover:shadow-cyan-500/50 transition-all hover:scale-105">
+              Contact Us
+            </button>
           </nav>
         </div>
       </header>
 
+      {/* Hero Section - The Future */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32">
         <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -55,19 +58,18 @@ export default function Home() {
                 Vending machines aren't just dispensers anymore. They're intelligent retail partners that understand demand, maximize space, and deliver unparalleled customer experience.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="/journey" className="group px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105 flex items-center justify-center gap-2 inline-block">
-                Start Your Journey <ChevronRight className="group-hover:translate-x-1 transition-transform" size={20} />
-              </a>
-                <a href="/machines" className="px-8 py-4 bg-slate-900 border-2 border-cyan-500/40 rounded-lg font-bold text-lg hover:border-cyan-500 hover:bg-slate-800 transition-all inline-block">
-  See Machines
-</a>
-
+                <button className="group px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                  Start Your Journey <ChevronRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                </button>
+                <button className="px-8 py-4 bg-slate-900 border-2 border-cyan-500/40 rounded-lg font-bold text-lg hover:border-cyan-500 hover:bg-slate-800 transition-all">
+                  See Machines
+                </button>
               </div>
             </div>
             <div className="relative h-96 md:h-full">
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-2xl border border-cyan-500/30 backdrop-blur-sm flex items-center justify-center overflow-hidden">
                 <img 
-                  src="\tech_logo.jpg" 
+                  src="YOUR_LOGO_URL_HERE" 
                   alt="TechWorm Logo" 
                   className="max-w-full max-h-full object-contain p-8"
                   onError={(e) => {
@@ -81,6 +83,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Video Section */}
+      <section className={`relative z-10 max-w-5xl mx-auto px-6 py-24 transition-all duration-1000 ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}>
+        <div className="rounded-3xl overflow-hidden border border-cyan-500/30 backdrop-blur-sm hover:border-cyan-500/50 transition-all shadow-2xl">
+          {/* Video Container */}
+          <div className="relative bg-black aspect-video flex items-center justify-center">
+            <video 
+              className="w-full h-full object-cover"
+              controls
+              autoPlay
+              loop
+              muted
+            >
+              <source src="/videos/web.mp4" type="video/mp4" />
+              Your browser doesn't support HTML5 video.
+            </video>
+          </div>
+          
+          {/* Video Info */}
+          <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 p-8 border-t border-cyan-500/20">
+            <h3 className="text-3xl font-black text-white mb-3">How TechWorm Works</h3>
+            <p className="text-slate-300 text-lg">
+              Experience the future of vending. AI-powered recognition, instant checkout, unlimited variety.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision Statement */}
       <section id="vision" className="relative z-10 border-t border-cyan-500/20 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className={`text-center mb-20 transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
@@ -129,6 +161,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Efficiency Section */}
       <section id="efficiency" className="relative z-10 border-t border-cyan-500/20 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
@@ -182,6 +215,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Capacity & Variety Section */}
       <section id="capacity" className="relative z-10 border-t border-cyan-500/20 py-24 bg-gradient-to-b from-slate-900/50 to-black">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
@@ -285,6 +319,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Bloom Partnership Section */}
       <section id="bloom" className="relative z-10 border-t border-cyan-500/20 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -332,6 +367,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Final CTA */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-24">
         <div className="rounded-2xl overflow-hidden border border-cyan-500/30">
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-500/5"></div>
@@ -343,10 +379,10 @@ export default function Home() {
               Efficiency. Capacity. Variety. Fresh food. Real customer service. This isn't the future of vending—it's the present. And it's here now.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="mailto:sales@techwormvending.com?subject=Schedule%20a%20Consultation" className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105 inline-block text-center">
-        Schedule a Consultation
-      </a>
-              <a href="https://wa.me/14127799809" className="px-8 py-4 bg-slate-800 border-2 border-emerald-500/40 text-emerald-400 rounded-lg font-bold text-lg hover:border-emerald-500 hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
+              <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105">
+                Schedule a Consultation
+              </button>
+              <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" className="px-8 py-4 bg-slate-800 border-2 border-emerald-500/40 text-emerald-400 rounded-lg font-bold text-lg hover:border-emerald-500 hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp Us
               </a>
@@ -355,6 +391,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="relative z-10 border-t border-cyan-500/20 backdrop-blur-sm mt-20 py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-12 mb-8">
