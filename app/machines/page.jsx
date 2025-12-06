@@ -159,7 +159,7 @@ export default function MachinesPage() {
 
                 <div className="relative flex flex-col h-full">
                   {/* Machine Image */}
-                  <div className="h-64 bg-gradient-to-br from-slate-800 to-slate-900 overflow-hidden border-b border-cyan-500/10 flex items-center justify-center flex-shrink-0">
+                  <div className="h-80 bg-gradient-to-br from-slate-800 to-slate-900 overflow-hidden border-b border-cyan-500/10 flex items-center justify-center flex-shrink-0">
                     <img 
                       src={machine.image} 
                       alt={machine.name}
