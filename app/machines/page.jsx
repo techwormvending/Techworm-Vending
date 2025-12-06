@@ -285,9 +285,9 @@ export default function MachinesPage() {
               Every machine comes with AI technology, Bloom Fresh integration, real-time tracking, and WhatsApp customer service.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105">
+              <a href="mailto:sales@techwormvending.com?subject=Schedule%20a%20Consultation" className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg font-black text-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all hover:scale-105 inline-block text-center">
                 Schedule a Consultation
-              </button>
+              </a>
               <a href="https://wa.me/14127799809" className="px-8 py-4 bg-slate-800 border-2 border-emerald-500/40 text-emerald-400 rounded-lg font-bold text-lg hover:border-emerald-500 hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp Us
