@@ -13,7 +13,7 @@ export default function MachinesPage() {
   const machines = [
     {
       id: 1,
-      name: 'US 360CT Mini',
+      name: '360 Mini',
       tagline: 'Compact Convenience',
       image: '/machines/us360ct-mini.png',
       description: 'The perfect fit for any space. Powerful AI in a slim profile. Fits anywhere, performs everywhere.',
@@ -40,7 +40,7 @@ export default function MachinesPage() {
     },
     {
       id: 2,
-      name: 'DC-550D Hybrid',
+      name: '550 Hybrid',
       tagline: 'Dual Temperature Control',
       image: '/machines/dc550d-hybrid.png',
       description: 'Refrigerated AND frozen in one intelligent machine. Your customers choose. Your revenue grows.',
@@ -68,7 +68,7 @@ export default function MachinesPage() {
     },
     {
       id: 3,
-      name: 'US1200CT Supermarket',
+      name: '1200 Supermarket',
       tagline: 'Double Door Powerhouse',
       image: '/machines/us1200ct-supermarket.png',
       description: 'A convenience store in a machine. Over 1200 items. Double doors. Unlimited possibilities.',
