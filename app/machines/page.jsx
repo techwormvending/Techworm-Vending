@@ -246,9 +246,9 @@ export default function MachinesPage() {
               <thead>
                 <tr className="border-b border-cyan-500/20">
                   <th className="text-left py-4 px-6 font-bold text-white">Feature</th>
-                  <th className="text-center py-4 px-6 font-bold text-cyan-400">US 360CT Mini</th>
-                  <th className="text-center py-4 px-6 font-bold text-purple-400">DC-550D Hybrid</th>
-                  <th className="text-center py-4 px-6 font-bold text-emerald-400">US1200CT</th>
+                  <th className="text-center py-4 px-6 font-bold text-cyan-400">360 Mini</th>
+                  <th className="text-center py-4 px-6 font-bold text-purple-400">550 Hybrid</th>
+                  <th className="text-center py-4 px-6 font-bold text-emerald-400">1200</th>
                 </tr>
               </thead>
               <tbody>
