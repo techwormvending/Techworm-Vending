@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techworm Vending Machines - AI Smart Vending Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #f0f0f0;
+            background: #0a0e27;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f1e3a 0%, #1a2f4a 100%);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 217, 255, 0.15);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        header nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            color: #00d9ff;
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 4rem 2rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a4a 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #00d9ff;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+
+        .machines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .machine-card {
+            background: linear-gradient(135deg, rgba(15, 30, 58, 0.8), rgba(26, 47, 74, 0.8));
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .machine-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.25);
+            border-color: rgba(0, 217, 255, 0.5);
+        }
+
+        .machine-header {
+            background: linear-gradient(135deg, #00d9ff, #00a8cc);
+            color: #0a0e27;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .machine-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .machine-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .machine-content {
+            padding: 2rem;
+        }
+
+        .spec-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-label {
+            color: #00d9ff;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .spec-value {
+            color: #e0e0e0;
+        }
+
+        .best-for {
+            background: rgba(0, 217, 255, 0.1);
+            border-left: 3px solid #00d9ff;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        .best-for-title {
+            color: #00d9ff;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .best-for-text {
+            color: #d0d0d0;
+            font-size: 0.9rem;
+        }
+
+        .comparison {
+            background: rgba(0, 217, 255, 0.02);
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+            padding: 4rem 2rem;
+        }
+
+        .comparison h2 {
+            color: #00d9ff;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: linear-gradient(135deg, rgba(15, 30, 58, 0.5), rgba(26, 47, 74, 0.5));
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #00d9ff, #00a8cc);
+            color: #0a0e27;
+            padding: 1rem;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            color: #e0e0e0;
+        }
+
+        tr:hover {
+            background: rgba(0, 217, 255, 0.05);
+        }
+
+        .features {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a4a 100%);
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .features h2 {
+            color: #00d9ff;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            padding: 2rem;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 8px;
+        }
+
+        .feature-item h4 {
+            color: #00d9ff;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-item p {
+            color: #e0e0e0;
+        }
+
+        footer {
+            background: #05081a;
+            color: #a0a0a0;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #00d9ff, #00a8cc);
+            color: #0a0e27;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 217, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="tech_logo.jpg" alt="Techworm Vending">
+                <span>TECHWORM</span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="machines.html" style="color: #00d9ff;">Machines</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="venues.html">For Venues</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Techworm Vending Machines</h1>
+        <p>Six powerful machine types designed for every venue and budget</p>
+    </section>
+
+    <!-- Machines Grid -->
+    <section>
+        <div class="container">
+            <div class="machines-grid">
+                <!-- Mini -->
+                <div class="machine-card">
+                    <div class="machine-header">
+                        <h3>Mini</h3>
+                        <p>Compact & Efficient</p>
+                    </div>
+                    <div class="machine-content">
+                        <div class="spec-group">
+                            <div class="spec-label">Dimensions</div>
+                            <div class="spec-value">Compact footprint for tight spaces</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Capacity</div>
+                            <div class="spec-value">Perfect for low-traffic areas</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Temperature</div>
+                            <div class="spec-value">Refrigerated</div>
+                        </div>
+                        <div class="best-for">
+                            <div class="best-for-title">Best For</div>
+                            <div class="best-for-text">Small offices, boutiques, studios</div>
+                        </div>
+                        <a href="contact.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Plus -->
+                <div class="machine-card">
+                    <div class="machine-header">
+                        <h3>Plus</h3>
+                        <p>Increased Capacity</p>
+                    </div>
+                    <div class="machine-content">
+                        <div class="spec-group">
+                            <div class="spec-label">Dimensions</div>
+                            <div class="spec-value">Mid-size professional unit</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Capacity</div>
+                            <div class="spec-value">Extended product selection</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Temperature</div>
+                            <div class="spec-value">Refrigerated</div>
+                        </div>
+                        <div class="best-for">
+                            <div class="best-for-title">Best For</div>
+                            <div class="best-for-text">Medium venues, gyms, coworking</div>
+                        </div>
+                        <a href="contact.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Max -->
+                <div class="machine-card">
+                    <div class="machine-header">
+                        <h3>Max</h3>
+                        <p>Maximum Selection</p>
+                    </div>
+                    <div class="machine-content">
+                        <div class="spec-group">
+                            <div class="spec-label">Dimensions</div>
+                            <div class="spec-value">Full-size cabinet</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Capacity</div>
+                            <div class="spec-value">Maximum product variety</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Temperature</div>
+                            <div class="spec-value">Refrigerated</div>
+                        </div>
+                        <div class="best-for">
+                            <div class="best-for-title">Best For</div>
+                            <div class="best-for-text">High-traffic locations, offices</div>
+                        </div>
+                        <a href="contact.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Pro -->
+                <div class="machine-card">
+                    <div class="machine-header">
+                        <h3>Pro</h3>
+                        <p>Premium Performance</p>
+                    </div>
+                    <div class="machine-content">
+                        <div class="spec-group">
+                            <div class="spec-label">Dimensions</div>
+                            <div class="spec-value">Professional enterprise unit</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Capacity</div>
+                            <div class="spec-value">Dual compartments</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Temperature</div>
+                            <div class="spec-value">Refrigerated + Room Temp</div>
+                        </div>
+                        <div class="best-for">
+                            <div class="best-for-title">Best For</div>
+                            <div class="best-for-text">Enterprise, hospitals, large offices</div>
+                        </div>
+                        <a href="contact.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Frozen -->
+                <div class="machine-card">
+                    <div class="machine-header">
+                        <h3>Frozen</h3>
+                        <p>Ice Cream & Frozen Treats</p>
+                    </div>
+                    <div class="machine-content">
+                        <div class="spec-group">
+                            <div class="spec-label">Dimensions</div>
+                            <div class="spec-value">Specialized freezer unit</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Capacity</div>
+                            <div class="spec-value">Premium frozen storage</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Temperature</div>
+                            <div class="spec-value">Frozen (-7°F to +5°F)</div>
+                        </div>
+                        <div class="best-for">
+                            <div class="best-for-title">Best For</div>
+                            <div class="best-for-text">Ice cream shops, entertainment venues</div>
+                        </div>
+                        <a href="contact.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Double Door -->
+                <div class="machine-card">
+                    <div class="machine-header">
+                        <h3>Double Door</h3>
+                        <p>Enterprise Solution</p>
+                    </div>
+                    <div class="machine-content">
+                        <div class="spec-group">
+                            <div class="spec-label">Dimensions</div>
+                            <div class="spec-value">Large dual-access cabinet</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Capacity</div>
+                            <div class="spec-value">864 bottle capacity</div>
+                        </div>
+                        <div class="spec-group">
+                            <div class="spec-label">Temperature</div>
+                            <div class="spec-value">Dual temperature zones</div>
+                        </div>
+                        <div class="best-for">
+                            <div class="best-for-title">Best For</div>
+                            <div class="best-for-text">High-volume venues, factories</div>
+                        </div>
+                        <a href="contact.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison">
+        <h2>Machine Comparison</h2>
+        <div class="container">
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Size</th>
+                            <th>Capacity</th>
+                            <th>Temperature</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Mini</strong></td>
+                            <td>Compact</td>
+                            <td>Low</td>
+                            <td>Refrigerated</td>
+                            <td>Small spaces, studios</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plus</strong></td>
+                            <td>Mid-Size</td>
+                            <td>Medium</td>
+                            <td>Refrigerated</td>
+                            <td>Gyms, offices</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Max</strong></td>
+                            <td>Full-Size</td>
+                            <td>High</td>
+                            <td>Refrigerated</td>
+                            <td>High-traffic venues</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pro</strong></td>
+                            <td>Professional</td>
+                            <td>Dual compartments</td>
+                            <td>Dual Temp</td>
+                            <td>Enterprise locations</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Frozen</strong></td>
+                            <td>Specialized</td>
+                            <td>Premium</td>
+                            <td>Frozen (-7°F to +5°F)</td>
+                            <td>Frozen products</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Double Door</strong></td>
+                            <td>Large</td>
+                            <td>864 bottles</td>
+                            <td>Dual Temp</td>
+                            <td>High-volume locations</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Universal Features</h2>
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4>🤖 AI Technology</h4>
+                    <p>Computer vision recognizes every product instantly. No barcodes needed—just grab and go.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>💳 Contactless Payment</h4>
+                    <p>Card tap, mobile payment, QR codes. Multiple payment options for customer convenience.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📊 Real-Time Analytics</h4>
+                    <p>Live inventory, sales data, and performance metrics from your dashboard.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🔒 Fraud Prevention</h4>
+                    <p>Temporary authorizations and advanced security prevent fraudulent transactions.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🛠️ Full Service</h4>
+                    <p>We handle installation, maintenance, restocking, and repairs at zero cost.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📦 Flexible Stocking</h4>
+                    <p>Stock any products you want—beverages, snacks, specialty items, or your own merchandise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Techworm Vending. All rights reserved. | Pittsburgh, PA</p>
+        <p>AI-Powered Smart Vending Solutions</p>
+    </footer>
+</body>
+</html>

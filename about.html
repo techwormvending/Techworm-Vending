@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Techworm Vending - AI Smart Vending Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #f0f0f0;
+            background: #0a0e27;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f1e3a 0%, #1a2f4a 100%);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 217, 255, 0.15);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        header nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            color: #00d9ff;
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 4rem 2rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a4a 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #00d9ff;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, rgba(15, 30, 58, 0.8), rgba(26, 47, 74, 0.8));
+            padding: 2.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .about-card h3 {
+            color: #00d9ff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+        }
+
+        .about-card p {
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: #00d9ff;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+        }
+
+        .stat-label {
+            color: #e0e0e0;
+            margin-top: 0.5rem;
+        }
+
+        .team {
+            background: rgba(0, 217, 255, 0.02);
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .team h2 {
+            color: #00d9ff;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: linear-gradient(135deg, rgba(15, 30, 58, 0.8), rgba(26, 47, 74, 0.8));
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            text-align: center;
+        }
+
+        .team-member h4 {
+            color: #00d9ff;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .team-member p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+
+        .values {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a4a 100%);
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .values h2 {
+            color: #00d9ff;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-item {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-item h4 {
+            color: #00d9ff;
+            margin-bottom: 1rem;
+        }
+
+        .value-item p {
+            color: #e0e0e0;
+        }
+
+        footer {
+            background: #05081a;
+            color: #a0a0a0;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #00d9ff, #00a8cc);
+            color: #0a0e27;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 217, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="tech_logo.jpg" alt="Techworm Vending">
+                <span>TECHWORM</span>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="machines.html">Machines</a></li>
+                <li><a href="about.html" style="color: #00d9ff;">About</a></li>
+                <li><a href="venues.html">For Venues</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>About Techworm Vending</h1>
+        <p>Pioneering AI-powered smart vending solutions that revolutionize how venues serve their customers.</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Mission & Vision -->
+        <section>
+            <div class="about-content">
+                <div class="about-card">
+                    <h3>Our Mission</h3>
+                    <p>To make high-quality, convenient retail accessible to every venue through innovative AI technology. We believe in creating zero-cost solutions that benefit both venue partners and their customers.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Our Vision</h3>
+                    <p>A future where AI-powered vending is the standard for 24/7 convenience retail. We're building a network of smart machines that understand customers better, operate efficiently, and create meaningful partnerships.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Our Values</h3>
+                    <p>Innovation, reliability, and partnership are at our core. We're committed to transparency, continuous improvement, and creating genuine value for everyone involved in the Techworm ecosystem.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Active Locations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Zero Cost to Partners</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Machine Types</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Values Section -->
+    <section class="values">
+        <h2>Our Core Values</h2>
+        <div class="container">
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon">🤖</div>
+                    <h4>Innovation</h4>
+                    <p>We continuously advance AI technology to create smarter, more efficient vending solutions.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🤝</div>
+                    <h4>Partnership</h4>
+                    <p>Your success is our success. We build lasting relationships based on mutual growth.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">💎</div>
+                    <h4>Quality</h4>
+                    <p>From machines to service, we maintain the highest standards in everything we do.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">🚀</div>
+                    <h4>Growth</h4>
+                    <p>We're committed to expanding opportunities for venues and customers alike.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <div class="container">
+            <h2>Leadership Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h4>Adam Dan</h4>
+                    <p>Founder & CEO</p>
+                    <p style="color: #707070; margin-top: 1rem;">Visionary leader with expertise in retail technology and AI innovation. Adam founded Techworm to revolutionize the vending industry.</p>
+                </div>
+                <div class="team-member">
+                    <h4>Operations Team</h4>
+                    <p>Pittsburgh-Based Excellence</p>
+                    <p style="color: #707070; margin-top: 1rem;">Dedicated professionals managing installations, maintenance, and customer relationships across all locations.</p>
+                </div>
+                <div class="team-member">
+                    <h4>Technology Team</h4>
+                    <p>AI & Software Innovation</p>
+                    <p style="color: #707070; margin-top: 1rem;">Experts in computer vision, machine learning, and real-time systems powering our smart machines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="background: linear-gradient(135deg, #0a1628 0%, #1a3a4a 100%); padding: 4rem 2rem; text-align: center; border-top: 1px solid rgba(0, 217, 255, 0.2);">
+        <div class="container">
+            <h2 style="color: #00d9ff; font-size: 2.5rem; margin-bottom: 1.5rem; text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);">Ready to Partner With Techworm?</h2>
+            <p style="color: #e0e0e0; font-size: 1.1rem; margin-bottom: 2rem;">Join hundreds of venues benefiting from AI-powered vending.</p>
+            <a href="contact.html" class="btn">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Techworm Vending. All rights reserved. | Pittsburgh, PA</p>
+        <p>AI-Powered Smart Vending Solutions</p>
+    </footer>
+</body>
+</html>
