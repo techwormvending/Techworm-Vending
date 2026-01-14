@@ -329,15 +329,6 @@
                     <h3>Contact Information</h3>
                     
                     <div class="info-item">
-                        <div class="info-label">📍 Location</div>
-                        <div class="info-value">
-                            Techworm Vending<br>
-                            1020 Whitley Dr<br>
-                            Pittsburgh, PA 15237
-                        </div>
-                    </div>
-
-                    <div class="info-item">
                         <div class="info-label">📧 Email</div>
                         <div class="info-value">
                             <a href="mailto:contact@techwormvending.com">contact@techwormvending.com</a>
@@ -349,20 +340,6 @@
                         <div class="info-value">
                             <a href="https://wa.me/1234567890" target="_blank">Contact us on WhatsApp</a>
                         </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-label">🏢 Business Hours</div>
-                        <div class="info-value">
-                            Monday - Friday: 9 AM - 6 PM<br>
-                            Saturday: 10 AM - 4 PM<br>
-                            Sunday: Closed
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-label">🆔 EIN</div>
-                        <div class="info-value">39-4550870</div>
                     </div>
 
                     <div class="info-item">
@@ -553,7 +530,7 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Techworm Vending. All rights reserved. | Pittsburgh, PA</p>
-        <p>EIN: 39-4550870 | AI-Powered Smart Vending Solutions</p>
+        <p>AI-Powered Smart Vending Solutions</p>
     </footer>
 
     <script>
