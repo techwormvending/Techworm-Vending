@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Legal – Techworm Vending</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap');
+
+  :root {
+    --black: #0A0A0A;
+    --yellow: #FFD600;
+    --white: #FFFFFF;
+    --gray: #F5F5F5;
+    --muted: #666666;
+    --border: #E0E0E0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--black);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  header .logo-mark {
+    width: 36px; height: 36px;
+    background: var(--yellow);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--black);
+    letter-spacing: 1px;
+  }
+  header .brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--white);
+    letter-spacing: 2px;
+  }
+  header .tagline {
+    font-size: 11px;
+    color: var(--yellow);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  /* ── Tab Nav ── */
+  .tab-bar {
+    background: var(--gray);
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    padding: 0 40px;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .tab-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 16px 28px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--muted);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn.active {
+    color: var(--black);
+    border-bottom-color: var(--yellow);
+  }
+  .tab-btn:hover { color: var(--black); }
+
+  /* ── Content ── */
+  .page { display: none; max-width: 820px; margin: 0 auto; padding: 56px 40px 80px; }
+  .page.active { display: block; }
+
+  .page-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 2px;
+    color: var(--black);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .effective-date {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 44px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .effective-date span {
+    background: var(--yellow);
+    color: var(--black);
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-left: 6px;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1.5px;
+    color: var(--black);
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--yellow);
+  }
+  p { margin-bottom: 14px; color: #2a2a2a; }
+  ul { margin: 10px 0 14px 22px; }
+  ul li { margin-bottom: 8px; color: #2a2a2a; }
+  a { color: var(--black); font-weight: 600; text-decoration: underline; }
+  a:hover { color: #444; }
+
+  .contact-box {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-top: 48px;
+  }
+  .contact-box h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1.5px;
+    color: var(--yellow);
+    margin-bottom: 14px;
+  }
+  .contact-box p { color: #ccc; margin-bottom: 6px; }
+  .contact-box a { color: var(--yellow); }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--black);
+    color: #666;
+    text-align: center;
+    font-size: 12px;
+    padding: 20px 40px;
+    letter-spacing: 0.5px;
+  }
+  footer span { color: var(--yellow); }
+
+  @media (max-width: 600px) {
+    header { padding: 14px 20px; }
+    header .tagline { display: none; }
+    .tab-bar { padding: 0 10px; }
+    .tab-btn { padding: 14px 14px; font-size: 13px; }
+    .page { padding: 36px 20px 60px; }
+    h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">TW</div>
+  <div class="brand">Techworm Vending</div>
+  <div class="tagline">Freshness on Demand</div>
+</header>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('privacy')">Privacy Policy</button>
+  <button class="tab-btn" onclick="showTab('terms')">Terms &amp; Conditions</button>
+  <button class="tab-btn" onclick="showTab('sms')">SMS Terms</button>
+</div>
+
+<!-- ══════════════ PRIVACY POLICY ══════════════ -->
+<div class="page active" id="privacy">
+  <div class="page-eyebrow">Legal</div>
+  <h1>Privacy Policy</h1>
+  <div class="effective-date">Effective Date: July 1, 2025 <span>Current</span></div>
+
+  <p>Techworm Vending LLC ("Techworm Vending," "we," "us," or "our") is committed to protecting the privacy of our customers, venue partners, and website visitors. This Privacy Policy explains what information we collect, how we use it, and your rights regarding that information.</p>
+
+  <h2>1. Information We Collect</h2>
+  <p>We may collect the following types of information:</p>
+  <ul>
+    <li><strong>Contact information</strong> – name, email address, phone number, and company name submitted through our contact forms or sales inquiries.</li>
+    <li><strong>Transaction data</strong> – payment method type (card or tap-to-pay) and purchase records processed through our vending machines. We do not store full card numbers.</li>
+    <li><strong>Machine interaction data</strong> – items selected, purchase timestamps, and machine location identifiers for inventory and operational purposes.</li>
+    <li><strong>SMS opt-in data</strong> – if you opt into SMS communications, we record your consent, phone number, and opt-in date.</li>
+    <li><strong>Website usage data</strong> – IP address, browser type, pages visited, and referring URLs collected through standard web analytics.</li>
+  </ul>
+
+  <h2>2. How We Use Your Information</h2>
+  <ul>
+    <li>To fulfill purchases and process payments at our vending machines.</li>
+    <li>To respond to inquiries submitted through our contact form or by phone.</li>
+    <li>To send SMS messages you have opted into, including service updates, sales follow-ups, and support communications.</li>
+    <li>To restock and maintain our machines based on sales data.</li>
+    <li>To improve our product offerings and predict customer demand.</li>
+    <li>To comply with legal and regulatory obligations.</li>
+  </ul>
+
+  <h2>3. SMS Consent</h2>
+  <p>SMS consent and phone numbers collected for SMS communications are <strong>not shared with third parties or affiliates for marketing purposes</strong>. You may opt out at any time by replying <strong>STOP</strong> to any message. Message and data rates may apply. Message frequency varies.</p>
+
+  <h2>4. Sharing of Information</h2>
+  <p>We do not sell your personal information. We may share information with:</p>
+  <ul>
+    <li><strong>Service providers</strong> – payment processors, SMS platforms, and analytics providers who assist us in operating our business, bound by confidentiality agreements.</li>
+    <li><strong>Venue partners</strong> – only aggregate, non-identifiable sales data is shared with location partners.</li>
+    <li><strong>Legal authorities</strong> – when required by law or to protect the rights and safety of Techworm Vending or others.</li>
+  </ul>
+
+  <h2>5. Camera & AI Vision Technology</h2>
+  <p>Our vending machines use AI vision technology to detect items removed from the machine. Machine cameras capture only product-level interactions — items and hands within the machine interior. <strong>Cameras do not capture faces, surrounding spaces, or identifiable individuals.</strong> No facial recognition is used. All machines are compliant with applicable Pennsylvania state laws.</p>
+
+  <h2>6. Data Retention</h2>
+  <p>We retain personal data only as long as necessary to fulfill the purposes described in this policy or as required by law. Transaction and sales data may be retained for up to 7 years for financial recordkeeping purposes.</p>
+
+  <h2>7. Your Rights</h2>
+  <ul>
+    <li>Request access to the personal data we hold about you.</li>
+    <li>Request correction of inaccurate information.</li>
+    <li>Request deletion of your personal data where applicable.</li>
+    <li>Opt out of SMS communications at any time by replying STOP.</li>
+  </ul>
+
+  <h2>8. Security</h2>
+  <p>We implement reasonable technical and organizational measures to protect your information from unauthorized access, loss, or misuse. Payment data is handled through PCI-compliant processors.</p>
+
+  <h2>9. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. The most current version will always be posted at <a href="https://www.techwormvending.com">techwormvending.com</a> with a revised effective date.</p>
+
+  <div class="contact-box">
+    <h3>Privacy Questions?</h3>
+    <p>Email: <a href="mailto:support@techwormvending.com">support@techwormvending.com</a></p>
+    <p>Phone: <a href="tel:4127799809">412-779-9809</a></p>
+    <p>Website: <a href="https://www.techwormvending.com">techwormvending.com</a></p>
+    <p style="margin-top:12px; font-size:13px;">Techworm Vending LLC · Pittsburgh, PA</p>
+  </div>
+</div>
+
+<!-- ══════════════ TERMS & CONDITIONS ══════════════ -->
+<div class="page" id="terms">
+  <div class="page-eyebrow">Legal</div>
+  <h1>Terms &amp; Conditions</h1>
+  <div class="effective-date">Effective Date: July 1, 2025 <span>Current</span></div>
+
+  <p>These Terms and Conditions ("Terms") govern your use of Techworm Vending LLC's smart vending machines, website, and services. By using our machines or website, you agree to these Terms.</p>
+
+  <h2>1. About Our Service</h2>
+  <p>Techworm Vending LLC operates AI-powered smart vending machines that allow customers to tap or insert a card, open the machine, select products, and be charged automatically based on items removed. Machines are located at various partner venues.</p>
+
+  <h2>2. Purchases & Payments</h2>
+  <ul>
+    <li>All sales are final. No refunds are issued for items that have been removed from the machine.</li>
+    <li>If you were charged for an item you did not take, or experienced a transaction error, contact us within 48 hours at <a href="mailto:support@techwormvending.com">support@techwormvending.com</a> or call <a href="tel:4127799809">412-779-9809</a>.</li>
+    <li>Prices displayed on the machine screen at the time of purchase are final. Prices are subject to change without notice.</li>
+    <li>We accept credit and debit cards and contactless/tap-to-pay methods. Cash is not accepted.</li>
+  </ul>
+
+  <h2>3. AI Vision Technology</h2>
+  <p>Our machines use AI computer vision to detect which items are removed. This system is not infallible. In the rare event of a detection error resulting in an incorrect charge, please contact our support team and we will investigate and resolve the issue promptly.</p>
+
+  <h2>4. Food & Beverage Products</h2>
+  <ul>
+    <li>Fresh food items are supplied by Bloom Fresh Food LLC and are clearly labeled with ingredients and expiration dates.</li>
+    <li>It is your responsibility to check labels for allergen information before consuming any product.</li>
+    <li>Techworm Vending is not liable for adverse reactions resulting from failure to read product labels.</li>
+    <li>Do not consume expired products. If you discover an expired item in the machine, please notify us immediately.</li>
+  </ul>
+
+  <h2>5. Machine Use</h2>
+  <ul>
+    <li>Machines are for customer purchases only. Tampering, vandalism, or attempts to obtain products without payment are strictly prohibited and may result in criminal liability.</li>
+    <li>Do not force the machine door open or attempt to manipulate the AI detection system.</li>
+    <li>Techworm Vending is not responsible for personal items left near or inside machines.</li>
+  </ul>
+
+  <h2>6. Website Use</h2>
+  <p>Content on techwormvending.com is for informational purposes only. We reserve the right to modify or discontinue any part of our website or services at any time without notice.</p>
+
+  <h2>7. Limitation of Liability</h2>
+  <p>To the fullest extent permitted by law, Techworm Vending LLC shall not be liable for any indirect, incidental, or consequential damages arising from the use of our machines, products, or website. Our total liability in any matter shall not exceed the amount you paid for the transaction in question.</p>
+
+  <h2>8. Governing Law</h2>
+  <p>These Terms are governed by the laws of the Commonwealth of Pennsylvania. Any disputes shall be resolved in the courts of Allegheny County, Pennsylvania.</p>
+
+  <h2>9. Changes to These Terms</h2>
+  <p>We may update these Terms at any time. Continued use of our machines or website after changes are posted constitutes acceptance of the revised Terms.</p>
+
+  <div class="contact-box">
+    <h3>Questions About Our Terms?</h3>
+    <p>Email: <a href="mailto:support@techwormvending.com">support@techwormvending.com</a></p>
+    <p>Phone: <a href="tel:4127799809">412-779-9809</a></p>
+    <p>Website: <a href="https://www.techwormvending.com">techwormvending.com</a></p>
+    <p style="margin-top:12px; font-size:13px;">Techworm Vending LLC · Pittsburgh, PA</p>
+  </div>
+</div>
+
+<!-- ══════════════ SMS TERMS ══════════════ -->
+<div class="page" id="sms">
+  <div class="page-eyebrow">Legal</div>
+  <h1>SMS Terms of Service</h1>
+  <div class="effective-date">Effective Date: July 1, 2025 <span>Current</span></div>
+
+  <p>By opting into SMS messaging from Techworm Vending, you agree to receive text messages from us at the phone number you provided. This includes messages related to customer support, service updates, machine status, and sales follow-ups.</p>
+
+  <h2>Message Frequency</h2>
+  <p>Message frequency varies based on your interactions with us and operational needs. You may receive occasional messages related to your inquiry, machine service, or account.</p>
+
+  <h2>Opt-Out</h2>
+  <p>You may opt out of SMS messages at any time by replying <strong>STOP</strong> to any message from us. After opting out, you will receive one final confirmation message and no further messages will be sent unless you re-subscribe by replying <strong>START</strong>.</p>
+
+  <h2>Help</h2>
+  <p>For assistance, reply <strong>HELP</strong> to any message or contact us directly:</p>
+  <ul>
+    <li>Email: <a href="mailto:support@techwormvending.com">support@techwormvending.com</a></li>
+    <li>Phone: <a href="tel:4127799809">412-779-9809</a></li>
+    <li>Website: <a href="https://www.techwormvending.com">techwormvending.com</a></li>
+  </ul>
+
+  <h2>Rates & Carriers</h2>
+  <p>Message and data rates may apply depending on your mobile carrier and plan. Techworm Vending is not responsible for any charges incurred from your carrier for receiving SMS messages.</p>
+
+  <h2>Privacy</h2>
+  <p>Your phone number and SMS consent data are never sold or shared with third parties for marketing purposes. See our full <a href="#" onclick="showTab('privacy'); return false;">Privacy Policy</a> for details.</p>
+
+  <h2>Supported Carriers</h2>
+  <p>SMS service is available through all major US carriers including AT&T, Verizon, T-Mobile, and others. Techworm Vending is not liable for delayed or undelivered messages.</p>
+
+  <h2>Consent is Not Required</h2>
+  <p>You are not required to consent to SMS messages as a condition of purchasing from our vending machines or using our services.</p>
+
+  <div class="contact-box">
+    <h3>SMS Support</h3>
+    <p>Reply <strong style="color:var(--yellow)">STOP</strong> to opt out &nbsp;·&nbsp; Reply <strong style="color:var(--yellow)">HELP</strong> for assistance</p>
+    <p style="margin-top:10px;">Email: <a href="mailto:support@techwormvending.com">support@techwormvending.com</a></p>
+    <p>Phone: <a href="tel:4127799809">412-779-9809</a></p>
+    <p style="margin-top:12px; font-size:13px;">Techworm Vending LLC · Pittsburgh, PA</p>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 <span>Techworm Vending LLC</span> · techwormvending.com · All rights reserved.
+</footer>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const tabs = ['privacy','terms','sms'];
+    document.querySelectorAll('.tab-btn')[tabs.indexOf(id)].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
