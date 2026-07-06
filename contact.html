@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact – Techworm Vending</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap');
+
+  :root {
+    --black: #0A0A0A;
+    --yellow: #FFD600;
+    --white: #FFFFFF;
+    --gray: #F5F5F5;
+    --muted: #666666;
+    --border: #DDDDDD;
+    --error: #cc0000;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--gray);
+    color: var(--black);
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--black);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: var(--yellow);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; color: var(--black); letter-spacing: 1px;
+  }
+  .brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; color: var(--white); letter-spacing: 2px;
+  }
+  .tagline {
+    font-size: 11px; color: var(--yellow);
+    letter-spacing: 1.5px; text-transform: uppercase; margin-left: auto;
+  }
+
+  /* ── Hero strip ── */
+  .hero {
+    background: var(--yellow);
+    padding: 40px 40px 36px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px; letter-spacing: 3px; color: var(--black); line-height: 1;
+  }
+  .hero p {
+    font-size: 16px; color: #333; margin-top: 10px; max-width: 520px; margin-inline: auto;
+  }
+
+  /* ── Layout ── */
+  .wrap {
+    max-width: 980px; margin: 0 auto;
+    padding: 48px 24px 80px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 40px;
+  }
+
+  /* ── Form card ── */
+  .form-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 40px 36px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  }
+  .form-card h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px; letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+  .form-card .sub {
+    font-size: 14px; color: var(--muted); margin-bottom: 28px;
+  }
+
+  .field { margin-bottom: 20px; }
+  label {
+    display: block;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.4px; margin-bottom: 6px;
+    color: var(--black);
+  }
+  label .req { color: var(--error); margin-left: 2px; }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 11px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--black);
+    background: var(--white);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--yellow);
+    box-shadow: 0 0 0 3px rgba(255,214,0,0.18);
+  }
+  textarea { resize: vertical; min-height: 100px; }
+
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ── SMS opt-in block ── */
+  .sms-block {
+    background: #fffbe6;
+    border: 1.5px solid #ffe566;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+  .sms-check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .sms-check-row input[type="checkbox"] {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    accent-color: var(--black);
+    cursor: pointer;
+  }
+  .sms-label {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #333;
+  }
+  .sms-label a {
+    color: var(--black);
+    font-weight: 600;
+    text-decoration: underline;
+  }
+  .sms-optional {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: #eee;
+    border-radius: 3px;
+    padding: 1px 6px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* ── Submit button ── */
+  .btn-submit {
+    width: 100%;
+    background: var(--black);
+    color: var(--yellow);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    padding: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-submit:hover { background: #222; }
+  .btn-submit:active { transform: scale(0.99); }
+
+  .form-note {
+    font-size: 12px; color: var(--muted);
+    text-align: center; margin-top: 14px; line-height: 1.5;
+  }
+
+  /* ── Success state ── */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 48px 24px;
+  }
+  .success-msg .check {
+    width: 60px; height: 60px;
+    background: var(--yellow);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 20px;
+  }
+  .success-msg h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px; letter-spacing: 2px; margin-bottom: 10px;
+  }
+  .success-msg p { color: var(--muted); font-size: 15px; }
+
+  /* ── Side info ── */
+  .side-info { display: flex; flex-direction: column; gap: 20px; }
+
+  .info-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 24px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .info-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px; letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--yellow);
+    padding-left: 10px;
+  }
+  .info-card p { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 8px; }
+  .info-card a { color: var(--black); font-weight: 600; text-decoration: underline; }
+
+  .info-card.dark {
+    background: var(--black); color: var(--white);
+  }
+  .info-card.dark h3 { color: var(--yellow); border-color: var(--yellow); }
+  .info-card.dark p { color: #bbb; }
+  .info-card.dark a { color: var(--yellow); }
+
+  .benefit-list { list-style: none; padding: 0; }
+  .benefit-list li {
+    font-size: 14px; color: #444;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .benefit-list li:last-child { border-bottom: none; }
+  .benefit-list li::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--yellow);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--black);
+    color: #555;
+    text-align: center;
+    font-size: 12px;
+    padding: 20px 40px;
+    letter-spacing: 0.5px;
+  }
+  footer span { color: var(--yellow); }
+  footer a { color: #888; text-decoration: underline; margin: 0 8px; }
+
+  @media (max-width: 720px) {
+    .wrap { grid-template-columns: 1fr; padding: 24px 16px 60px; }
+    .row-2 { grid-template-columns: 1fr; }
+    .hero { padding: 28px 20px 24px; }
+    .hero h1 { font-size: 38px; }
+    header { padding: 14px 20px; }
+    .tagline { display: none; }
+    .form-card { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">TW</div>
+  <div class="brand">Techworm Vending</div>
+  <div class="tagline">Freshness on Demand</div>
+</header>
+
+<div class="hero">
+  <h1>Get in Touch</h1>
+  <p>Interested in a smart vending machine for your location? Fill out the form and we'll be in touch within one business day.</p>
+</div>
+
+<div class="wrap">
+
+  <!-- ── FORM ── -->
+  <div class="form-card">
+    <h2>Contact Us</h2>
+    <p class="sub">Fields marked <span style="color:var(--error)">*</span> are required.</p>
+
+    <form id="contactForm" action="https://formspree.io/f/xjknowab" method="POST">
+
+      <div class="row-2">
+        <div class="field">
+          <label for="fname">First Name <span class="req">*</span></label>
+          <input type="text" id="fname" name="first_name" required placeholder="Jane"/>
+        </div>
+        <div class="field">
+          <label for="lname">Last Name <span class="req">*</span></label>
+          <input type="text" id="lname" name="last_name" required placeholder="Smith"/>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="company">Company / Organization <span class="req">*</span></label>
+        <input type="text" id="company" name="company" required placeholder="Acme Corp"/>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label for="email">Email Address <span class="req">*</span></label>
+          <input type="email" id="email" name="email" required placeholder="jane@company.com"/>
+        </div>
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(412) 555-0100"/>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="location_type">Type of Location</label>
+        <select id="location_type" name="location_type">
+          <option value="">– Select –</option>
+          <option>Office / Corporate</option>
+          <option>Warehouse / Distribution</option>
+          <option>Healthcare / Medical</option>
+          <option>Manufacturing / Industrial</option>
+          <option>School / University</option>
+          <option>Gym / Fitness Center</option>
+          <option>Hotel / Hospitality</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="employees">Approximate Number of Employees / Daily Visitors</label>
+        <select id="employees" name="employees">
+          <option value="">– Select –</option>
+          <option>Under 50</option>
+          <option>50 – 150</option>
+          <option>150 – 400</option>
+          <option>400 – 800</option>
+          <option>800+</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="message">Additional Comments</label>
+        <textarea id="message" name="message" placeholder="Tell us anything else that might be helpful — number of machines interested in, existing vending setup, etc."></textarea>
+      </div>
+
+      <!-- ══ SMS OPT-IN — TCR COMPLIANT ══ -->
+      <div class="sms-block">
+        <div class="sms-check-row">
+          <input type="checkbox" id="sms_consent" name="sms_consent" value="yes"/>
+          <label for="sms_consent" class="sms-label">
+            By checking this box, I agree to receive SMS messages about Conversational purposes from Techworm Vending at the phone number provided above. The SMS frequency may vary. Data rates may apply. Text HELP to
+            <a href="tel:4127799809">412-779-9809</a> for assistance. Reply STOP to opt out of receiving SMS messages. Please review our
+            <a href="techworm-legal.html#privacy" target="_blank">Privacy Policy</a> and
+            <a href="techworm-legal.html#terms" target="_blank">Terms and Conditions</a>.
+            <span class="sms-optional">Optional</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Hidden field to capture SMS consent value -->
+      <input type="hidden" name="_subject" value="New Techworm Vending Contact Form Submission"/>
+
+      <button type="submit" class="btn-submit">Send Message</button>
+
+      <p class="form-note">
+        We'll respond within 1 business day. &nbsp;·&nbsp;
+        No contract or cost to host a machine.
+      </p>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      <div class="check">✓</div>
+      <h3>Message Sent!</h3>
+      <p>Thanks for reaching out. We'll be in touch within one business day.</p>
+    </div>
+  </div>
+
+  <!-- ── SIDE INFO ── -->
+  <div class="side-info">
+
+    <div class="info-card">
+      <h3>Why Techworm Vending?</h3>
+      <ul class="benefit-list">
+        <li>Zero cost & zero contract to host</li>
+        <li>AI-powered grab-and-go checkout</li>
+        <li>Tap-to-pay or card — no app needed</li>
+        <li>Fresh food + snacks + beverages</li>
+        <li>Full service managed by us</li>
+        <li>Optional digital receipts via QR</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3>How It Works</h3>
+      <p>🪙 <strong>Tap or insert your card</strong> to unlock the machine.</p>
+      <p>🖐 <strong>Open the door</strong> and grab what you want.</p>
+      <p>📷 <strong>AI vision detects</strong> exactly what you took.</p>
+      <p>📱 <strong>Scan the QR code</strong> on-screen for a digital receipt — or just walk away.</p>
+    </div>
+
+    <div class="info-card dark">
+      <h3>Talk to Us Directly</h3>
+      <p>Phone: <a href="tel:4127799809">412-779-9809</a></p>
+      <p>Email: <a href="mailto:adam@techwormvending.com">adam@techwormvending.com</a></p>
+      <p>Website: <a href="https://www.techwormvending.com">techwormvending.com</a></p>
+      <p style="margin-top:12px; font-size:12px; color:#666;">
+        Techworm Vending LLC<br>Pittsburgh, PA
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  &copy; 2026 <span>Techworm Vending LLC</span> &nbsp;·&nbsp;
+  <a href="techworm-legal.html">Privacy Policy</a>
+  <a href="techworm-legal.html#terms">Terms &amp; Conditions</a>
+  <a href="techworm-legal.html#sms">SMS Terms</a>
+</footer>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const successMsg = document.getElementById('successMsg');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const data = new FormData(form);
+      // Add SMS consent as readable text
+      const smsChecked = document.getElementById('sms_consent').checked;
+      data.set('sms_consent', smsChecked ? 'YES – Opted in to SMS' : 'No – Did not opt in');
+
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or call us at 412-779-9809.');
+      }
+    } catch(err) {
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again or call us at 412-779-9809.');
+    }
+  });
+</script>
+
+</body>
+</html>
