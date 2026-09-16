@@ -4,51 +4,60 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contact – Techworm Vending</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap');
-
   :root {
-    --black: #0A0A0A;
+    --black: #0e0e0e;
+    --black2: #161616;
     --yellow: #FFD600;
-    --white: #FFFFFF;
-    --gray: #F5F5F5;
-    --muted: #666666;
-    --border: #DDDDDD;
-    --error: #cc0000;
+    --yellow-dim: rgba(255,214,0,0.12);
+    --white: #ffffff;
+    --gray: #888;
+    --border: #222;
+    --error: #ff5252;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--gray);
-    color: var(--black);
+    background: var(--black);
+    color: var(--white);
     min-height: 100vh;
   }
 
-  /* ── Header ── */
-  header {
-    background: var(--black);
-    padding: 18px 40px;
+  /* ── Nav ── */
+  nav {
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+    height: 64px;
+    background: rgba(14,14,14,0.92);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
     display: flex;
     align-items: center;
     gap: 14px;
+    text-decoration: none;
   }
-  .logo-mark {
-    width: 36px; height: 36px;
-    background: var(--yellow);
-    border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .nav-logo-top {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px; color: var(--black); letter-spacing: 1px;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--white);
   }
-  .brand {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px; color: var(--white); letter-spacing: 2px;
-  }
-  .tagline {
-    font-size: 11px; color: var(--yellow);
-    letter-spacing: 1.5px; text-transform: uppercase; margin-left: auto;
+  .nav-logo-sub {
+    font-size: 8px;
+    letter-spacing: 4px;
+    color: var(--yellow);
+    text-transform: uppercase;
+    margin-top: 2px;
   }
 
   /* ── Hero strip ── */
@@ -76,10 +85,10 @@
 
   /* ── Form card ── */
   .form-card {
-    background: var(--white);
+    background: var(--black2);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 40px 36px;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
   }
   .form-card h2 {
     font-family: 'Bebas Neue', sans-serif;
@@ -87,7 +96,7 @@
     margin-bottom: 6px;
   }
   .form-card .sub {
-    font-size: 14px; color: var(--muted); margin-bottom: 28px;
+    font-size: 14px; color: var(--gray); margin-bottom: 28px;
   }
 
   .field { margin-bottom: 20px; }
@@ -95,7 +104,7 @@
     display: block;
     font-size: 13px; font-weight: 600;
     letter-spacing: 0.4px; margin-bottom: 6px;
-    color: var(--black);
+    color: var(--white);
   }
   label .req { color: var(--error); margin-left: 2px; }
 
@@ -110,8 +119,8 @@
     padding: 11px 14px;
     font-family: 'DM Sans', sans-serif;
     font-size: 15px;
-    color: var(--black);
-    background: var(--white);
+    color: var(--white);
+    background: var(--black);
     transition: border-color 0.2s;
     outline: none;
   }
@@ -119,14 +128,16 @@
     border-color: var(--yellow);
     box-shadow: 0 0 0 3px rgba(255,214,0,0.18);
   }
+  input::placeholder, textarea::placeholder { color: #555; }
+  select option { background: var(--black2); color: var(--white); }
   textarea { resize: vertical; min-height: 100px; }
 
   .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
   /* ── SMS opt-in block ── */
   .sms-block {
-    background: #fffbe6;
-    border: 1.5px solid #ffe566;
+    background: var(--yellow-dim);
+    border: 1.5px solid rgba(255,214,0,0.3);
     border-radius: 8px;
     padding: 18px 20px;
     margin-bottom: 24px;
@@ -140,16 +151,16 @@
     width: 18px; height: 18px;
     flex-shrink: 0;
     margin-top: 3px;
-    accent-color: var(--black);
+    accent-color: var(--yellow);
     cursor: pointer;
   }
   .sms-label {
     font-size: 13px;
     line-height: 1.6;
-    color: #333;
+    color: #ccc;
   }
   .sms-label a {
-    color: var(--black);
+    color: var(--yellow);
     font-weight: 600;
     text-decoration: underline;
   }
@@ -159,8 +170,8 @@
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--muted);
-    background: #eee;
+    color: var(--gray);
+    background: rgba(255,255,255,0.08);
     border-radius: 3px;
     padding: 1px 6px;
     margin-left: 6px;
@@ -170,8 +181,8 @@
   /* ── Submit button ── */
   .btn-submit {
     width: 100%;
-    background: var(--black);
-    color: var(--yellow);
+    background: var(--yellow);
+    color: var(--black);
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
     letter-spacing: 2px;
@@ -179,13 +190,13 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
+    transition: opacity 0.2s, transform 0.1s;
   }
-  .btn-submit:hover { background: #222; }
+  .btn-submit:hover { opacity: 0.85; }
   .btn-submit:active { transform: scale(0.99); }
 
   .form-note {
-    font-size: 12px; color: var(--muted);
+    font-size: 12px; color: var(--gray);
     text-align: center; margin-top: 14px; line-height: 1.5;
   }
 
@@ -207,16 +218,16 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 30px; letter-spacing: 2px; margin-bottom: 10px;
   }
-  .success-msg p { color: var(--muted); font-size: 15px; }
+  .success-msg p { color: var(--gray); font-size: 15px; }
 
   /* ── Side info ── */
   .side-info { display: flex; flex-direction: column; gap: 20px; }
 
   .info-card {
-    background: var(--white);
+    background: var(--black2);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 24px 24px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
   .info-card h3 {
     font-family: 'Bebas Neue', sans-serif;
@@ -225,19 +236,16 @@
     border-left: 4px solid var(--yellow);
     padding-left: 10px;
   }
-  .info-card p { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 8px; }
-  .info-card a { color: var(--black); font-weight: 600; text-decoration: underline; }
+  .info-card p { font-size: 14px; color: #bbb; line-height: 1.6; margin-bottom: 8px; }
+  .info-card a { color: var(--yellow); font-weight: 600; text-decoration: underline; }
 
   .info-card.dark {
-    background: var(--black); color: var(--white);
+    background: var(--black); border-color: var(--yellow);
   }
-  .info-card.dark h3 { color: var(--yellow); border-color: var(--yellow); }
-  .info-card.dark p { color: #bbb; }
-  .info-card.dark a { color: var(--yellow); }
 
   .benefit-list { list-style: none; padding: 0; }
   .benefit-list li {
-    font-size: 14px; color: #444;
+    font-size: 14px; color: #bbb;
     padding: 7px 0;
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center; gap: 10px;
@@ -253,34 +261,59 @@
 
   /* ── Footer ── */
   footer {
-    background: var(--black);
-    color: #555;
-    text-align: center;
-    font-size: 12px;
-    padding: 20px 40px;
-    letter-spacing: 0.5px;
+    background: #080808;
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
   }
-  footer span { color: var(--yellow); }
-  footer a { color: #888; text-decoration: underline; margin: 0 8px; }
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+  .footer-brand span { color: var(--yellow); }
+  .footer-legal {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 1px;
+  }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+  .footer-links a {
+    color: #444; font-size: 11px; letter-spacing: 1px;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--yellow); }
+  .footer-tagline {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--yellow);
+    text-transform: uppercase;
+  }
 
   @media (max-width: 720px) {
     .wrap { grid-template-columns: 1fr; padding: 24px 16px 60px; }
     .row-2 { grid-template-columns: 1fr; }
     .hero { padding: 28px 20px 24px; }
     .hero h1 { font-size: 38px; }
-    header { padding: 14px 20px; }
-    .tagline { display: none; }
+    nav { padding: 0 20px; }
     .form-card { padding: 28px 20px; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo-mark">TW</div>
-  <div class="brand">Techworm Vending</div>
-  <div class="tagline">Freshness on Demand</div>
-</header>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-text">
+      <span class="nav-logo-top">TECHWORM</span>
+      <span class="nav-logo-sub">Vending LLC</span>
+    </div>
+  </a>
+</nav>
 
 <div class="hero">
   <h1>Get in Touch</h1>
@@ -415,7 +448,7 @@
       <p>Phone: <a href="tel:4127799809">412-779-9809</a></p>
       <p>Email: <a href="mailto:adam@techwormvending.com">adam@techwormvending.com</a></p>
       <p>Website: <a href="https://www.techwormvending.com">techwormvending.com</a></p>
-      <p style="margin-top:12px; font-size:12px; color:#666;">
+      <p style="margin-top:12px; font-size:12px; color:#777;">
         Techworm Vending LLC<br>Pittsburgh, PA
       </p>
     </div>
@@ -424,10 +457,15 @@
 </div>
 
 <footer>
-  &copy; 2026 <span>Techworm Vending LLC</span> &nbsp;·&nbsp;
-  <a href="techworm-legal.html">Privacy Policy</a>
-  <a href="techworm-legal.html#terms">Terms &amp; Conditions</a>
-  <a href="techworm-legal.html#sms">SMS Terms</a>
+  <div class="footer-brand">TECHWORM <span>VENDING</span> LLC</div>
+  <div class="footer-tagline">Freshness on Demand</div>
+  <div class="footer-legal">© 2026 Techworm Vending LLC · Pittsburgh, PA · (412) 779-9809</div>
+  <div class="footer-links">
+    <a href="techworm-legal.html">Privacy Policy</a>
+    <a href="techworm-legal.html#terms">Terms &amp; Conditions</a>
+    <a href="techworm-legal.html#sms">SMS Terms</a>
+    <a href="techworm-contact.html">Contact</a>
+  </div>
 </footer>
 
 <script>

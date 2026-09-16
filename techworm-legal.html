@@ -4,64 +4,66 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Legal – Techworm Vending</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap');
-
   :root {
-    --black: #0A0A0A;
+    --black: #0e0e0e;
+    --black2: #161616;
     --yellow: #FFD600;
-    --white: #FFFFFF;
-    --gray: #F5F5F5;
-    --muted: #666666;
-    --border: #E0E0E0;
+    --yellow-dim: rgba(255,214,0,0.12);
+    --white: #ffffff;
+    --gray: #888;
+    --border: #222;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--white);
-    color: var(--black);
+    background: var(--black);
+    color: var(--white);
     font-size: 16px;
     line-height: 1.7;
   }
 
-  /* ── Header ── */
-  header {
-    background: var(--black);
-    padding: 18px 40px;
+  /* ── Nav ── */
+  nav {
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+    height: 64px;
+    background: rgba(14,14,14,0.92);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
     display: flex;
     align-items: center;
     gap: 14px;
+    text-decoration: none;
   }
-  header .logo-mark {
-    width: 36px; height: 36px;
-    background: var(--yellow);
-    border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .nav-logo-top {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
-    color: var(--black);
-    letter-spacing: 1px;
-  }
-  header .brand {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    color: var(--white);
     letter-spacing: 2px;
+    color: var(--white);
   }
-  header .tagline {
-    font-size: 11px;
+  .nav-logo-sub {
+    font-size: 8px;
+    letter-spacing: 4px;
     color: var(--yellow);
-    letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-left: auto;
+    margin-top: 2px;
   }
 
   /* ── Tab Nav ── */
   .tab-bar {
-    background: var(--gray);
-    border-bottom: 2px solid var(--border);
+    background: var(--black2);
+    border-bottom: 1px solid var(--border);
     display: flex;
     padding: 0 40px;
     gap: 0;
@@ -78,16 +80,16 @@
     border: none;
     background: none;
     cursor: pointer;
-    color: var(--muted);
+    color: var(--gray);
     border-bottom: 3px solid transparent;
-    margin-bottom: -2px;
+    margin-bottom: -1px;
     transition: color 0.2s, border-color 0.2s;
   }
   .tab-btn.active {
-    color: var(--black);
+    color: var(--white);
     border-bottom-color: var(--yellow);
   }
-  .tab-btn:hover { color: var(--black); }
+  .tab-btn:hover { color: var(--white); }
 
   /* ── Content ── */
   .page { display: none; max-width: 820px; margin: 0 auto; padding: 56px 40px 80px; }
@@ -98,20 +100,20 @@
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--gray);
     margin-bottom: 10px;
   }
   h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 48px;
     letter-spacing: 2px;
-    color: var(--black);
+    color: var(--white);
     line-height: 1.1;
     margin-bottom: 8px;
   }
   .effective-date {
     font-size: 13px;
-    color: var(--muted);
+    color: var(--gray);
     margin-bottom: 44px;
     padding-bottom: 24px;
     border-bottom: 1px solid var(--border);
@@ -130,19 +132,20 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 24px;
     letter-spacing: 1.5px;
-    color: var(--black);
+    color: var(--white);
     margin: 40px 0 12px;
     padding-left: 12px;
     border-left: 4px solid var(--yellow);
   }
-  p { margin-bottom: 14px; color: #2a2a2a; }
+  p { margin-bottom: 14px; color: #ccc; }
   ul { margin: 10px 0 14px 22px; }
-  ul li { margin-bottom: 8px; color: #2a2a2a; }
-  a { color: var(--black); font-weight: 600; text-decoration: underline; }
-  a:hover { color: #444; }
+  ul li { margin-bottom: 8px; color: #ccc; }
+  a { color: var(--yellow); font-weight: 600; text-decoration: underline; }
+  a:hover { color: #fff; }
 
   .contact-box {
-    background: var(--black);
+    background: var(--black2);
+    border: 1px solid var(--border);
     color: var(--white);
     border-radius: 8px;
     padding: 28px 32px;
@@ -160,18 +163,42 @@
 
   /* ── Footer ── */
   footer {
-    background: var(--black);
-    color: #666;
-    text-align: center;
-    font-size: 12px;
-    padding: 20px 40px;
-    letter-spacing: 0.5px;
+    background: #080808;
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
   }
-  footer span { color: var(--yellow); }
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+  .footer-brand span { color: var(--yellow); }
+  .footer-legal {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 1px;
+  }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+  .footer-links a {
+    color: #444; font-size: 11px; letter-spacing: 1px;
+    text-decoration: none; transition: color 0.2s;
+    font-weight: normal;
+  }
+  .footer-links a:hover { color: var(--yellow); }
+  .footer-tagline {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--yellow);
+    text-transform: uppercase;
+  }
 
   @media (max-width: 600px) {
-    header { padding: 14px 20px; }
-    header .tagline { display: none; }
+    nav { padding: 0 20px; }
     .tab-bar { padding: 0 10px; }
     .tab-btn { padding: 14px 14px; font-size: 13px; }
     .page { padding: 36px 20px 60px; }
@@ -181,11 +208,14 @@
 </head>
 <body>
 
-<header>
-  <div class="logo-mark">TW</div>
-  <div class="brand">Techworm Vending</div>
-  <div class="tagline">Freshness on Demand</div>
-</header>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-text">
+      <span class="nav-logo-top">TECHWORM</span>
+      <span class="nav-logo-sub">Vending LLC</span>
+    </div>
+  </a>
+</nav>
 
 <div class="tab-bar">
   <button class="tab-btn active" onclick="showTab('privacy')">Privacy Policy</button>
@@ -377,7 +407,15 @@
 </div>
 
 <footer>
-  &copy; 2025 <span>Techworm Vending LLC</span> · techwormvending.com · All rights reserved.
+  <div class="footer-brand">TECHWORM <span>VENDING</span> LLC</div>
+  <div class="footer-tagline">Freshness on Demand</div>
+  <div class="footer-legal">© 2026 Techworm Vending LLC · Pittsburgh, PA · (412) 779-9809</div>
+  <div class="footer-links">
+    <a href="techworm-legal.html">Privacy Policy</a>
+    <a href="techworm-legal.html#terms">Terms &amp; Conditions</a>
+    <a href="techworm-legal.html#sms">SMS Terms</a>
+    <a href="techworm-contact.html">Contact</a>
+  </div>
 </footer>
 
 <script>
