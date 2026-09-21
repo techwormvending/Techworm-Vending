@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machines – Techworm Vending</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0e0e0e;
+  --black2: #161616;
+  --yellow: #FFD600;
+  --yellow-dim: rgba(255,214,0,0.12);
+  --white: #ffffff;
+  --gray: #888;
+  --border: #222;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 64px;
+  background: rgba(14,14,14,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+.nav-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.nav-logo-top {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--white);
+}
+.nav-logo-sub {
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: var(--yellow);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--yellow); }
+.nav-links a.active { color: var(--yellow); }
+
+.nav-cta {
+  background: var(--yellow);
+  color: var(--black) !important;
+  padding: 10px 22px;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  border-radius: 2px;
+  transition: opacity 0.2s !important;
+}
+.nav-cta:hover { opacity: 0.85; color: var(--black) !important; }
+
+/* ══════════════════════════════════════
+   PAGE INTRO
+══════════════════════════════════════ */
+.page-intro {
+  padding: 168px 48px 96px;
+  background: var(--black2);
+  border-bottom: 1px solid var(--border);
+}
+.page-intro-inner { max-width: 720px; }
+
+.section-tag {
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 5vw, 72px);
+  letter-spacing: 2px;
+  line-height: 0.9;
+  margin-bottom: 24px;
+}
+
+.page-intro-body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--gray);
+  font-weight: 300;
+  max-width: 560px;
+}
+
+/* ══════════════════════════════════════
+   MACHINE ROWS
+══════════════════════════════════════ */
+.machine-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+}
+
+.machine-photo {
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px;
+  border-right: 1px solid var(--border);
+}
+.machine-photo img {
+  max-width: 100%;
+  max-height: 520px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.machine-info {
+  padding: 72px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.machine-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 3.4vw, 46px);
+  letter-spacing: 1.5px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.machine-tagline {
+  font-size: 14px;
+  color: var(--gray);
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: 28px;
+}
+
+.spec-list {
+  list-style: none;
+  border-top: 1px solid var(--border);
+  margin-bottom: 28px;
+  max-width: 460px;
+}
+.spec-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.spec-label {
+  color: var(--gray);
+  flex-shrink: 0;
+}
+.spec-value {
+  color: var(--white);
+  font-weight: 500;
+  text-align: right;
+}
+
+.feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+  max-width: 460px;
+}
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  color: #ccc;
+  line-height: 1.6;
+}
+.feature-list li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  background: var(--yellow);
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--black);
+  padding: 15px 32px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: opacity 0.2s, transform 0.2s;
+  align-self: flex-start;
+}
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* ══════════════════════════════════════
+   BOTTOM CTA
+══════════════════════════════════════ */
+.machines-cta {
+  padding: 96px 48px;
+  background: var(--black2);
+  text-align: center;
+}
+.machines-cta .section-title { margin-bottom: 16px; }
+.machines-cta-body {
+  font-size: 14px;
+  color: var(--gray);
+  font-weight: 300;
+  max-width: 460px;
+  margin: 0 auto 32px;
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  background: #080808;
+  border-top: 1px solid var(--border);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+.footer-brand span { color: var(--yellow); }
+.footer-legal {
+  font-size: 11px;
+  color: #444;
+  letter-spacing: 1px;
+}
+.footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+.footer-links a {
+  color: #444; font-size: 11px; letter-spacing: 1px;
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--yellow); }
+.footer-tagline {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--yellow);
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .page-intro { padding: 140px 24px 64px; }
+  .machine-row { grid-template-columns: 1fr; }
+  .machine-photo { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 24px; }
+  .machine-info { padding: 48px 24px; }
+  .machines-cta { padding: 64px 24px; }
+  footer { padding: 24px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-text">
+      <span class="nav-logo-top">TECHWORM</span>
+      <span class="nav-logo-sub">Vending LLC</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="index.html#venues">Venues</a></li>
+    <li><a href="machines.html" class="active">Machines</a></li>
+    <li><a href="techworm-contact.html">Contact</a></li>
+    <li><a href="techworm-contact.html" class="nav-cta">Get a Machine</a></li>
+  </ul>
+</nav>
+
+<!-- ══ PAGE INTRO ═════════════════════════ -->
+<section class="page-intro">
+  <div class="page-intro-inner">
+    <p class="section-tag">Our Fleet</p>
+    <h1 class="section-title">Machines Built<br>For Any Space</h1>
+    <p class="page-intro-body">Our machines are selected and customized to fit each location — from standard beverage coolers to frozen and high-capacity dual-door units.</p>
+  </div>
+</section>
+
+<!-- ══ STANDARD MACHINE ═══════════════════ -->
+<section class="machine-row">
+  <div class="machine-photo">
+    <img src="assets/images/machine-standard.jpg" alt="Standard single-door AI smart vending cooler stocked with beverages and snacks">
+  </div>
+  <div class="machine-info">
+    <h2 class="machine-name">Standard Machine</h2>
+    <p class="machine-tagline">A versatile single-door cooler built for everyday beverage and snack traffic.</p>
+    <ul class="spec-list">
+      <li><span class="spec-label">Capacity</span><span class="spec-value">15.8 cu ft</span></li>
+      <li><span class="spec-label">Shelf Display</span><span class="spec-value">6 shelves, ~324 bottles/cans</span></li>
+      <li><span class="spec-label">Temperature Range</span><span class="spec-value">32°F – 50°F</span></li>
+      <li><span class="spec-label">Dimensions (W x D x H)</span><span class="spec-value">27.2 x 27 x 76.6 in</span></li>
+      <li><span class="spec-label">Weight</span><span class="spec-value">232.6 lb</span></li>
+      <li><span class="spec-label">Power Consumption</span><span class="spec-value">2.28 kWh/24h</span></li>
+    </ul>
+    <ul class="feature-list">
+      <li>AI-powered product recognition, 99% accuracy, ~60 second checkout</li>
+      <li>Accepts credit/debit cards and Apple Pay</li>
+      <li>Anti-fog heated glass door</li>
+    </ul>
+    <a href="techworm-contact.html" class="btn-primary">Get a Machine</a>
+  </div>
+</section>
+
+<!-- ══ FROZEN MACHINE ═════════════════════ -->
+<section class="machine-row">
+  <div class="machine-photo">
+    <img src="assets/images/machine-frozen.jpg" alt="Frozen AI smart vending machine stocked with frozen meals and ice cream">
+  </div>
+  <div class="machine-info">
+    <h2 class="machine-name">Frozen Machine</h2>
+    <p class="machine-tagline">A true freezer unit for ice cream, frozen meals, and other frozen goods.</p>
+    <ul class="spec-list">
+      <li><span class="spec-label">Capacity</span><span class="spec-value">20.0 cu ft</span></li>
+      <li><span class="spec-label">Shelf Display</span><span class="spec-value">6 shelves</span></li>
+      <li><span class="spec-label">Temperature Range</span><span class="spec-value">-8°F to -1°F (true freezer)</span></li>
+      <li><span class="spec-label">Dimensions (W x D x H)</span><span class="spec-value">27.6 x 35.8 x 80.4 in</span></li>
+      <li><span class="spec-label">Weight</span><span class="spec-value">329.6 lb</span></li>
+      <li><span class="spec-label">Power Consumption</span><span class="spec-value">8.33 kWh/24h</span></li>
+    </ul>
+    <ul class="feature-list">
+      <li>Stocks ice cream, frozen meals, and other frozen goods</li>
+      <li>AI-powered product recognition, 99% accuracy, ~60 second checkout</li>
+      <li>Accepts credit/debit cards and Apple Pay</li>
+    </ul>
+    <a href="techworm-contact.html" class="btn-primary">Get a Machine</a>
+  </div>
+</section>
+
+<!-- ══ ULTRA DUAL-DOOR MACHINE ════════════ -->
+<section class="machine-row">
+  <div class="machine-photo">
+    <img src="assets/images/machine-ultra.jpg" alt="Ultra dual-door AI smart vending machine stocked with beverages and snacks">
+  </div>
+  <div class="machine-info">
+    <h2 class="machine-name">Ultra Dual-Door Machine</h2>
+    <p class="machine-tagline">Our highest-capacity model, built with dual doors for higher-traffic locations.</p>
+    <ul class="spec-list">
+      <li><span class="spec-label">Capacity</span><span class="spec-value">39.9 cu ft</span></li>
+      <li><span class="spec-label">Shelf Display</span><span class="spec-value">12 shelves, ~756 bottles/cans</span></li>
+      <li><span class="spec-label">Temperature Range</span><span class="spec-value">32°F – 50°F</span></li>
+      <li><span class="spec-label">Dimensions (W x D x H)</span><span class="spec-value">53.9 x 28.0 x 79.5 in</span></li>
+      <li><span class="spec-label">Weight</span><span class="spec-value">379.2 lb</span></li>
+      <li><span class="spec-label">Power Consumption</span><span class="spec-value">6.2 kWh/24h</span></li>
+    </ul>
+    <ul class="feature-list">
+      <li>Dual-door design for higher-traffic locations</li>
+      <li>AI-powered product recognition, 99% accuracy, ~60 second checkout</li>
+      <li>Accepts credit/debit cards and Apple Pay</li>
+    </ul>
+    <a href="techworm-contact.html" class="btn-primary">Get a Machine</a>
+  </div>
+</section>
+
+<!-- ══ BOTTOM CTA ═════════════════════════ -->
+<section class="machines-cta">
+  <h2 class="section-title">Not Sure Which<br>Fits Your Space?</h2>
+  <p class="machines-cta-body">Tell us about your location and we'll recommend the right machine — at zero cost to you.</p>
+  <a href="techworm-contact.html" class="btn-primary" style="align-self:center;">Get a Machine</a>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════ -->
+<footer>
+  <div class="footer-brand">TECHWORM <span>VENDING</span> LLC</div>
+  <div class="footer-tagline">Freshness on Demand</div>
+  <div class="footer-legal">© 2026 Techworm Vending LLC · Pittsburgh, PA · (412) 779-9809</div>
+  <div class="footer-links">
+    <a href="techworm-legal.html">Privacy Policy</a>
+    <a href="techworm-legal.html#terms">Terms &amp; Conditions</a>
+    <a href="techworm-legal.html#sms">SMS Terms</a>
+    <a href="techworm-contact.html">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
