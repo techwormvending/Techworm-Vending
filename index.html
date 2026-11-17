@@ -538,9 +538,13 @@ nav {
 
 .venue-tile {
   position: relative;
+  display: block;
   overflow: hidden;
-  cursor: default;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
+.venue-tile:focus-visible { outline: 2px solid var(--yellow); outline-offset: -2px; }
 .venue-tile img {
   width: 100%;
   height: 340px;
@@ -569,7 +573,32 @@ nav {
   transform-origin: left;
   transition: transform 0.4s;
 }
-.venue-tile:hover .venue-tile-bar { transform: scaleX(1); }
+.venue-tile:hover .venue-tile-bar,
+.venue-tile:focus-visible .venue-tile-bar { transform: scaleX(1); }
+
+.venue-tile-more {
+  position: absolute;
+  top: 18px; right: 20px;
+  z-index: 2;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--white);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.venue-tile-more span {
+  display: inline-block;
+  color: var(--yellow);
+  transition: transform 0.3s;
+}
+.venue-tile:hover .venue-tile-more,
+.venue-tile:focus-visible .venue-tile-more { opacity: 1; transform: translateX(0); }
+.venue-tile:hover .venue-tile-more span { transform: translateX(3px); }
+@media (hover: none) {
+  .venue-tile-more { opacity: 0.85; transform: none; }
+}
 
 .venue-tile-label {
   position: absolute;
@@ -771,42 +800,46 @@ footer {
   </div>
 
   <div class="venue-tiles">
-    <div class="venue-tile">
+    <a href="venue-lobby.html" class="venue-tile">
       <img src="/assets/images/venue-lobby.jpg" alt="Lobby">
       <div class="venue-tile-overlay"></div>
       <div class="venue-tile-bar"></div>
+      <div class="venue-tile-more">Learn more <span>&rarr;</span></div>
       <div class="venue-tile-label">
         <div class="venue-tile-name">Building Lobby</div>
-        <div class="venue-tile-type">Office &amp; Commercial</div>
+        <div class="venue-tile-type">Office, Commercial &amp; Residential</div>
       </div>
-    </div>
-    <div class="venue-tile">
+    </a>
+    <a href="venue-breakroom.html" class="venue-tile">
       <img src="/assets/images/venue-breakroom.jpg" alt="Lounge">
       <div class="venue-tile-overlay"></div>
       <div class="venue-tile-bar"></div>
+      <div class="venue-tile-more">Learn more <span>&rarr;</span></div>
       <div class="venue-tile-label">
         <div class="venue-tile-name">Break Room</div>
         <div class="venue-tile-type">Employee Lounge</div>
       </div>
-    </div>
-    <div class="venue-tile">
+    </a>
+    <a href="venue-outdoor.html" class="venue-tile">
       <img src="/assets/images/venue-outdoor.jpg" alt="Outdoor">
       <div class="venue-tile-overlay"></div>
       <div class="venue-tile-bar"></div>
+      <div class="venue-tile-more">Learn more <span>&rarr;</span></div>
       <div class="venue-tile-label">
         <div class="venue-tile-name">Outdoor Area</div>
         <div class="venue-tile-type">Public &amp; Exterior</div>
       </div>
-    </div>
-    <div class="venue-tile">
+    </a>
+    <a href="venue-fitness.html" class="venue-tile">
       <img src="/assets/images/venue-fitness.jpg" alt="Gym">
       <div class="venue-tile-overlay"></div>
       <div class="venue-tile-bar"></div>
+      <div class="venue-tile-more">Learn more <span>&rarr;</span></div>
       <div class="venue-tile-label">
         <div class="venue-tile-name">Fitness Center</div>
         <div class="venue-tile-type">Gym &amp; Sports</div>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building Lobby — Office, Commercial &amp; Residential – Techworm Vending</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0e0e0e;
+  --black2: #161616;
+  --yellow: #FFD600;
+  --yellow-dim: rgba(255,214,0,0.12);
+  --white: #ffffff;
+  --gray: #888;
+  --border: #222;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 64px;
+  background: rgba(14,14,14,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+.nav-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.nav-logo-top {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--white);
+}
+.nav-logo-sub {
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: var(--yellow);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--yellow); }
+.nav-links a.active { color: var(--yellow); }
+
+.nav-cta {
+  background: var(--yellow);
+  color: var(--black) !important;
+  padding: 10px 22px;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  border-radius: 2px;
+  transition: opacity 0.2s !important;
+}
+.nav-cta:hover { opacity: 0.85; color: var(--black) !important; }
+
+/* ══════════════════════════════════════
+   VENUE HERO
+══════════════════════════════════════ */
+.venue-hero {
+  position: relative;
+  height: 72vh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.venue-hero.flip { justify-content: flex-end; }
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: var(--pos, center);
+  filter: brightness(0.45) saturate(0.8);
+  transform: scale(1.04);
+  animation: heroZoom 14s ease-out forwards;
+}
+@keyframes heroZoom {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1.00); }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(14,14,14,0.92) 0%,
+    rgba(14,14,14,0.55) 50%,
+    rgba(14,14,14,0.1) 100%
+  );
+}
+.venue-hero.flip .hero-overlay {
+  background: linear-gradient(
+    to left,
+    rgba(14,14,14,0.92) 0%,
+    rgba(14,14,14,0.55) 50%,
+    rgba(14,14,14,0.1) 100%
+  );
+}
+.hero-overlay-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 200px;
+  background: linear-gradient(to top, var(--black2) 0%, transparent 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 48px 72px;
+  max-width: 720px;
+  animation: fadeUp 1s 0.3s both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 24px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--yellow);
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 8vw, 112px);
+  line-height: 0.9;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+.hero-title em {
+  color: var(--yellow);
+  font-style: normal;
+}
+
+.hero-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #aaa;
+  font-weight: 300;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--black);
+  padding: 16px 36px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.btn-ghost {
+  display: inline-block;
+  border: 1px solid #444;
+  color: #aaa;
+  padding: 16px 36px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
+
+/* ══════════════════════════════════════
+   BENEFITS
+══════════════════════════════════════ */
+.benefits {
+  padding: 100px 48px;
+  background: var(--black2);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-tag {
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 5vw, 72px);
+  letter-spacing: 2px;
+  line-height: 0.9;
+  margin-bottom: 56px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2px;
+}
+
+.step {
+  background: var(--black);
+  padding: 40px 36px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.step:hover { border-color: var(--yellow); }
+.step::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--yellow);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.step:hover::before { transform: scaleX(1); }
+
+.step-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--yellow-dim);
+  position: absolute;
+  top: 16px; right: 20px;
+  transition: color 0.3s;
+}
+.step:hover .step-num { color: rgba(255,214,0,0.2); }
+
+.step-icon {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.step-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.step-desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--gray);
+  font-weight: 300;
+}
+
+.callout {
+  margin-top: 40px;
+  padding: 28px 32px;
+  background: var(--black);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--yellow);
+  font-size: 15px;
+  line-height: 1.7;
+  color: #ccc;
+  font-weight: 300;
+}
+
+.photo-placeholder {
+  margin-top: 2px;
+  aspect-ratio: 16 / 7;
+  max-height: 460px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 45%, rgba(255,214,0,0.08) 0%, transparent 70%),
+    var(--black);
+  border: 1px dashed #333;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #555;
+}
+
+/* ══════════════════════════════════════
+   BOTTOM CTA
+══════════════════════════════════════ */
+.venue-cta {
+  padding: 64px 48px 72px;
+  background: var(--black);
+  text-align: center;
+}
+.venue-cta .section-title { margin-bottom: 16px; }
+.venue-cta-body {
+  font-size: 14px;
+  color: var(--gray);
+  font-weight: 300;
+  max-width: 460px;
+  margin: 0 auto 32px;
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  background: #080808;
+  border-top: 1px solid var(--border);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+.footer-brand span { color: var(--yellow); }
+.footer-legal {
+  font-size: 11px;
+  color: #444;
+  letter-spacing: 1px;
+}
+.footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+.footer-links a {
+  color: #444; font-size: 11px; letter-spacing: 1px;
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--yellow); }
+.footer-tagline {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--yellow);
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .venue-hero { height: auto; min-height: 540px; }
+  .venue-hero.flip { justify-content: flex-start; }
+  .hero-bg { background-position: var(--pos-m, var(--pos, center)); }
+  .hero-overlay,
+  .venue-hero.flip .hero-overlay { background: rgba(14,14,14,0.6); }
+  .hero-content { padding: 0 24px 56px; }
+  .benefits { padding: 72px 24px; }
+  .callout { padding: 24px; }
+  .venue-cta { padding: 48px 24px 56px; }
+  footer { padding: 24px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-text">
+      <span class="nav-logo-top">TECHWORM</span>
+      <span class="nav-logo-sub">Vending LLC</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="index.html#venues" class="active">Venues</a></li>
+    <li><a href="machines.html">Machines</a></li>
+    <li><a href="techworm-contact.html">Contact</a></li>
+    <li><a href="techworm-contact.html" class="nav-cta">Get a Machine</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ═════════════════════════════ -->
+<section class="venue-hero">
+  <div class="hero-bg" style="background-image:url('assets/images/venue-lobby.jpg'); --pos:center 36%; --pos-m:80% 40%;"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Office, Commercial &amp; Residential</p>
+    <h1 class="hero-title">BUILDING<br><em>LOBBY</em></h1>
+    <p class="hero-body">Turn your lobby into a mini convenience store — for office and commercial buildings, and for residential buildings too.</p>
+    <div class="hero-actions">
+      <a href="techworm-contact.html" class="btn-primary">Get a Machine</a>
+      <a href="index.html#venues" class="btn-ghost">All Venues</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BENEFITS ═══════════════════════════ -->
+<section class="benefits">
+  <p class="section-tag">What We Can Do There</p>
+  <h2 class="section-title">A MINI<br>CONVENIENCE STORE</h2>
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">01</span>
+      <div class="step-icon">🛒</div>
+      <div class="step-name">Your Lobby, Now a Store</div>
+      <p class="step-desc">We can turn your lobby into a mini convenience store for everyone who walks through it.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <div class="step-icon">⚙️</div>
+      <div class="step-name">Stock Literally Anything</div>
+      <p class="step-desc">Our smart machines have no moving parts and adjustable shelving that fits any size product, so we can stock literally anything you want.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <div class="step-icon">❄️</div>
+      <div class="step-name">Frozen Machines Too</div>
+      <p class="step-desc">Need frozen goods? We also offer frozen machines, so your lobby can carry the cold stuff as well.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">04</span>
+      <div class="step-icon">🏠</div>
+      <div class="step-name">Residential Buildings</div>
+      <p class="step-desc">Stock everyday essentials like milk, bread, and butter right in the lobby for your residents.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BOTTOM CTA ═════════════════════════ -->
+<section class="venue-cta">
+  <h2 class="section-title">READY TO UPGRADE<br>YOUR LOBBY?</h2>
+  <p class="venue-cta-body">Tell us about your building and we'll help you decide what to stock.</p>
+  <a href="techworm-contact.html" class="btn-primary">Get a Machine</a>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════ -->
+<footer>
+  <div class="footer-brand">TECHWORM <span>VENDING</span> LLC</div>
+  <div class="footer-tagline">Freshness on Demand</div>
+  <div class="footer-legal">© 2026 Techworm Vending LLC · Pittsburgh, PA · (412) 779-9809</div>
+  <div class="footer-links">
+    <a href="techworm-legal.html">Privacy Policy</a>
+    <a href="techworm-legal.html#terms">Terms &amp; Conditions</a>
+    <a href="techworm-legal.html#sms">SMS Terms</a>
+    <a href="techworm-contact.html">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
